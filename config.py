@@ -16,3 +16,6 @@ class Config:
     ADMINS = ['your-email@example.com']
 
     POSTS_PER_PAGE = 3
+    LANGUAGES = ['en', 'es']
+
+    TRANSLATOR_API_KEY= os.environ.get('TRANSLATOR_API_KEY')
