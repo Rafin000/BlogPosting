@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-13 15:46+0600\n"
+"POT-Creation-Date: 2024-02-14 09:32+0600\n"
 "PO-Revision-Date: 2017-09-29 23:25-0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -22,47 +22,47 @@ msgstr ""
 msgid "Please log in to access this page."
 msgstr "Por favor ingrese para acceder a esta página."
 
-#: app/routes.py:31
+#: app/routes.py:36
 msgid "Your post is now live!"
 msgstr "¡Tu artículo ha sido publicado!"
 
-#: app/routes.py:61
+#: app/routes.py:66
 msgid "Invalid username or password"
 msgstr "Nombre de usuario o contraseña inválidos"
 
-#: app/routes.py:91
+#: app/routes.py:96
 msgid "Congratulations, you are now a registered user!"
 msgstr "¡Felicitaciones, ya eres un usuario registrado!"
 
-#: app/routes.py:132
+#: app/routes.py:137
 msgid "Your changes have been saved."
 msgstr "Tus cambios han sido salvados."
 
-#: app/routes.py:151
+#: app/routes.py:156
 #, python-format
 msgid "User %(username)s not found."
 msgstr "El usuario %(username)s no ha sido encontrado."
 
-#: app/routes.py:154
+#: app/routes.py:159
 msgid "You cannot follow yourself!"
 msgstr "¡No te puedes seguir a tí mismo!"
 
-#: app/routes.py:159
-#, fuzzy, python-format
+#: app/routes.py:164
+#, fuzzy
 msgid "You are following %(username)!"
 msgstr "¡Ahora estás siguiendo a %(username)s!"
 
-#: app/routes.py:176
-#, fuzzy, python-format
+#: app/routes.py:181
+#, fuzzy
 msgid "User %(username) not found."
 msgstr "El usuario %(username)s no ha sido encontrado."
 
-#: app/routes.py:179
+#: app/routes.py:184
 msgid "You cannot unfollow yourself!"
 msgstr "¡No te puedes dejar de seguir a tí mismo!"
 
-#: app/routes.py:184
-#, fuzzy, python-format
+#: app/routes.py:189
+#, fuzzy
 msgid "You are not following %(username)."
 msgstr "No estás siguiendo a %(username)s."
 
@@ -70,6 +70,10 @@ msgstr "No estás siguiendo a %(username)s."
 #, python-format
 msgid "%(username)s said %(when)s"
 msgstr "%(username)s dijo %(when)s"
+
+#: app/templates/_post.html:22
+msgid "Translate"
+msgstr ""
 
 #~ msgid "[Microblog] Reset Your Password"
 #~ msgstr "[Microblog] Nueva Contraseña"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-13 15:46+0600\n"
-"PO-Revision-Date: 2024-02-13 15:46+0600\n"
+"POT-Creation-Date: 2024-02-14 09:33+0600\n"
+"PO-Revision-Date: 2024-02-14 09:33+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
@@ -22,49 +22,53 @@ msgstr ""
 msgid "Please log in to access this page."
 msgstr ""
 
-#: app/routes.py:31
+#: app/routes.py:36
 msgid "Your post is now live!"
 msgstr ""
 
-#: app/routes.py:61
+#: app/routes.py:66
 msgid "Invalid username or password"
 msgstr ""
 
-#: app/routes.py:91
+#: app/routes.py:96
 msgid "Congratulations, you are now a registered user!"
 msgstr ""
 
-#: app/routes.py:132
+#: app/routes.py:137
 msgid "Your changes have been saved."
 msgstr ""
 
-#: app/routes.py:151
+#: app/routes.py:156
 #, python-format
 msgid "User %(username)s not found."
 msgstr ""
 
-#: app/routes.py:154
+#: app/routes.py:159
 msgid "You cannot follow yourself!"
 msgstr ""
 
-#: app/routes.py:159
+#: app/routes.py:164
 msgid "You are following %(username)!"
 msgstr ""
 
-#: app/routes.py:176
+#: app/routes.py:181
 msgid "User %(username) not found."
 msgstr ""
 
-#: app/routes.py:179
+#: app/routes.py:184
 msgid "You cannot unfollow yourself!"
 msgstr ""
 
-#: app/routes.py:184
+#: app/routes.py:189
 msgid "You are not following %(username)."
 msgstr ""
 
 #: app/templates/_post.html:18
 #, python-format
 msgid "%(username)s said %(when)s"
+msgstr ""
+
+#: app/templates/_post.html:22
+msgid "Translate"
 msgstr ""
 
