@@ -6,25 +6,12 @@ RUN pip install gunicorn
 
 COPY app app
 COPY migrations migrations
-COPY microblog.py config.py boot.sh ./
-RUN chmod a+x boot.sh
+COPY microblog.py config.py 
+COPY boot.sh boot.sh
+RUN chmod +x boot.sh   # Set executable permissions for boot.sh
 
 ENV FLASK_APP microblog.py
-RUN flask translate compile
 
-EXPOSE 5000
-ENTRYPOINT ["./boot.sh"]FROM python:slim
-
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-RUN pip install gunicorn
-
-COPY app app
-COPY migrations migrations
-COPY microblog.py config.py boot.sh ./
-
-ENV FLASK_APP microblog.py
-RUN flask translate compile
 
 EXPOSE 5000
 ENTRYPOINT ["./boot.sh"]
