@@ -106,6 +106,11 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
             .order_by(Post.timestamp.desc())
         )
     
+    def posts_count(self):
+        query = sa.select(sa.func.count()).select_from(
+            self.posts.select().subquery())
+        return db.session.scalar(query)
+    
     
     def to_dict(self, include_email=False):
         data = {
