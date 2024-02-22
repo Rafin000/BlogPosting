@@ -155,9 +155,10 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
         db.session.add(self)
         return self.token
 
+
     def revoke_token(self):
-        self.token_expiration = datetime.now(timezone.utc) - timedelta(
-            seconds=1)
+        self.token_expiration = datetime.now(timezone.utc) - timedelta(seconds=1)
+
 
     @staticmethod
     def check_token(token):
