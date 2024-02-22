@@ -7,6 +7,8 @@ from app import db
 from flask_login import UserMixin
 from app import login
 from hashlib import md5
+from datetime import timedelta
+import secrets
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -57,6 +59,8 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
         secondaryjoin=(followers.c.followed_id == id), back_populates='followers')
     followers: so.WriteOnlyMapped['User'] = so.relationship(secondary=followers, primaryjoin=(followers.c.followed_id == id),
         secondaryjoin=(followers.c.follower_id == id), back_populates='following')
+    token: so.Mapped[Optional[str]] = so.mapped_column(sa.String(32), index=True, unique=True)
+    token_expiration: so.Mapped[Optional[datetime]]
 
 
     def set_password(self, password):
@@ -116,8 +120,7 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
         data = {
             'id': self.id,
             'username': self.username,
-            'last_seen': self.last_seen.replace(
-                tzinfo=timezone.utc).isoformat(),
+            'last_seen': self.last_seen.replace(tzinfo=timezone.utc).isoformat(),
             'about_me': self.about_me,
             'post_count': self.posts_count(),
             'follower_count': self.followers_count(),
@@ -140,6 +143,29 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
                 setattr(self, field, data[field])
         if new_user and 'password' in data:
             self.set_password(data['password'])
+
+
+    def get_token(self, expires_in=3600):
+        now = datetime.now(timezone.utc)
+        if self.token and self.token_expiration.replace(
+                tzinfo=timezone.utc) > now + timedelta(seconds=60):
+            return self.token
+        self.token = secrets.token_hex(16)
+        self.token_expiration = now + timedelta(seconds=expires_in)
+        db.session.add(self)
+        return self.token
+
+    def revoke_token(self):
+        self.token_expiration = datetime.now(timezone.utc) - timedelta(
+            seconds=1)
+
+    @staticmethod
+    def check_token(token):
+        user = db.session.scalar(sa.select(User).where(User.token == token))
+        if user is None or user.token_expiration.replace(
+                tzinfo=timezone.utc) < datetime.now(timezone.utc):
+            return None
+        return user
 
 
     def __repr__(self):
