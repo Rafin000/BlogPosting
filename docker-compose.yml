@@ -1,0 +1,38 @@
+version: "3"
+services:
+  microblog-server:
+    image: rafin1998/microblog
+    container_name: microblog-server
+    ports:
+      - '9000:5000'  # Corrected port mapping syntax
+    environment:
+      SECRET_KEY: rafin-key
+      DATABASE_URL: mysql+pymysql://microblog:12345@mysql-db/microblog  # Corrected DATABASE_URL syntax
+    networks:
+      - microblog-network
+
+  mysql-db:
+    image: mysql:latest
+    container_name: microblog-mysql_db
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: 'microblog'
+      MYSQL_USER: 'microblog'
+      MYSQL_PASSWORD: '12345'
+    volumes:
+      - microblog-app-mysql:/var/lib/mysql
+    networks:
+      - microblog-network
+    restart: on-failure
+
+volumes:
+  microblog-app-mysql:
+    driver: local
+
+networks:
+  microblog-network:
+    name: microblog-network
+    driver: bridge
+    external: false
